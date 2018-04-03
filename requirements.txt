@@ -1,0 +1,12 @@
+beautifulsoup4==4.6.0
+behave==1.2.6
+bs4==0.0.1
+chromedriver==2.24.1
+Django==1.11.11
+parse==1.8.2
+parse-type==0.4.2
+pytz==2018.3
+reverse==0.1.0
+selenium==3.11.0
+six==1.11.0
+splinter==0.7.7
