@@ -1,0 +1,23 @@
+{% extends "dogapp/base.html" %}
+
+{% block content %}
+<h1>
+	{{ dog.name }}
+	{% if user == dog.user %}
+		(<a href="{% url 'dogapp:refuge_edit' refuge.id %}">edit</a>)
+	{% endif %}
+</h1>
+
+<h2>Race:</h2>
+<p>
+	{{ dog.race }}<br/>
+</p>
+<h2>Decription:</h2>
+<p>
+	{{ dog.description }}<br/>
+</p>
+{% endblock %}
+
+{% block footer %}
+Created by {{ dog.user }}
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls.base import reverse
 
 
 # Create your models here.
@@ -18,6 +19,9 @@ class Refuge(models.Model):
 
     def __unicode__(self):
         return u"%s" % self.name
+
+    def get_absolute_url(self):
+        return reverse('dogapp:refuge_detail', kwargs={'pk': self.pk})
 
 
 class Vaccine(models.Model):
@@ -39,6 +43,9 @@ class Dog(models.Model):
 
     def __unicode__(self):
         return u"%s" % self.name
+
+    def get_absolute_url(self):
+        return reverse('dogapp:dog_detail', kwargs={'pkr': self.refuge.pk, 'pk': self.pk})
 
 
 class Client(models.Model):

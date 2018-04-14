@@ -1,0 +1,15 @@
+{% extends "dogapp/base.html" %}
+
+{% block content %}
+<h1>
+	Refuges
+	{% if user %}(<a href="{% url 'dogapp:refuge_create' %}">add</a>){% endif %}
+</h1>
+<ul>
+	{% for refuge in latest_refuge_list %}
+		<li><a href="{% url 'dogapp:refuge_detail' refuge.id %}">
+		{{ refuge.name }}</a></li>
+	{% empty %}<li>Sorry, no refuges registered yet.</li>
+	{% endfor %}
+</ul>
+{% endblock %}

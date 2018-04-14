@@ -1,0 +1,34 @@
+{% extends "dogapp/base.html" %}
+
+{% block content %}
+<h1>
+	{{ refuge.name }}
+	{% if user == refuge.user %}
+		(<a href="{% url 'dogapp:refuge_edit' refuge.id %}">edit</a>)
+	{% endif %}
+</h1>
+
+<h2>Address:</h2>
+<p>
+	{{ refuge.street }}, {{ refuge.number }} <br/>
+	{{ refuge.zipcode }} {{ refuge.city }} <br/>
+	{{ refuge.stateOrProvince }} ({{ refuge.country }})
+</p>
+
+<h2>Dogs
+	{% if user %}
+		(<a href="{% url 'dogapp:dog_create' refuge.id %}">add</a>)
+	{% endif %}
+</h2>
+<ul>
+	{% for dog in refuge.dogs.all %}
+		<li><a href="{% url 'dogapp:dog_detail' refuge.id dog.id %}">
+		{{ dog.name }}</a></li>
+	{% empty %}<li>Sorry, no dogs for this refuge yet.</li>
+	{% endfor %}
+</ul>
+{% endblock %}
+
+{% block footer %}
+Created by {{ refuge.user }}
+{% endblock %}
