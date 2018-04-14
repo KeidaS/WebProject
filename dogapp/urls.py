@@ -53,6 +53,11 @@ urlpatterns = [
             model=Refuge,
             template_name='dogapp/refuge_detail.html'),
         name='refuge_detail'),
+url(r'^login/$',
+        DetailView.as_view(
+            model=Refuge,
+            template_name='registration/login.html'),
+        name='login'),
 
 
 ]

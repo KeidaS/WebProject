@@ -18,6 +18,14 @@ from dogapp.forms import SignUpForm
 
 # Create your views here.
 
+def login(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+
+
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
