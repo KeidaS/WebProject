@@ -1,4 +1,5 @@
 from django.contrib.auth import login, authenticate
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
@@ -9,15 +10,6 @@ from dogapp.forms import SignUpForm
 
 
 # Create your views here.
-
-def login(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-
-
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
