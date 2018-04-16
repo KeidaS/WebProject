@@ -1,0 +1,9 @@
+{% extends "dogapp/base.html" %}
+
+{% block content %}
+<h1>
+	Do you want to adopt {{ dog.name }}?
+</h1>
+    (<a href="{% url 'dogapp:refuge_list' %}">YES</a>)
+    (<a href="{% url 'dogapp:refuge_list' %}">NO</a>)
+{% endblock %}

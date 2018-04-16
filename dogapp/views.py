@@ -1,17 +1,9 @@
-from django.shortcuts import render
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView
-from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 from models import Refuge, Dog, Vaccine
 from forms import RefugeForm, DogForm
-from django.http import HttpResponseRedirect
-
 
 from dogapp.forms import SignUpForm
 
@@ -49,6 +41,7 @@ class RefugeDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super(RefugeDetail, self).get_context_data(**kwargs)
         return context
+
 
 class RefugeCreate(CreateView):
     model = Refuge

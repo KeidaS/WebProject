@@ -37,7 +37,6 @@ class Dog(models.Model):
     race = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField('Euro amount', max_digits=8, decimal_places=2, blank=True, null=True)
-    # image = models.ImageField(upload_to="myrestaurants", blank=True, null=True)
     refuge = models.ForeignKey(Refuge, null=True, related_name='dogs')
     vaccine = models.ForeignKey(Vaccine, null=True, related_name='dogs')
 
