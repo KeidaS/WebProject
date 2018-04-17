@@ -1,7 +1,7 @@
 **How to create an admin user**
 For create an admin user use the next command:
 
-```python manage.py createsuperuser```
+```$ python manage.py createsuperuser```
 
 There is an admin created for testing the web:
 
