@@ -1,5 +1,12 @@
-https://tomas123.herokuapp.com/dogapp/
+**How to create an admin user**
+For create an admin user use the next command:
 
+```python manage.py createsuperuser```
+
+There is an admin created for testing the web:
+
+- User: Test
+- Password: Testing123
 
 **How to deploy the apliccation on Heroku** 
 
@@ -33,3 +40,5 @@ $ git commit -m "Message"
 Settings.py:
 
 ```ALLOWED_HOSTS = ['tomas123.herokuapp.com']```
+
+Web example: https://tomas123.herokuapp.com/dogapp/
