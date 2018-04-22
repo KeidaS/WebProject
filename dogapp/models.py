@@ -47,17 +47,6 @@ class Dog(models.Model):
         return reverse('dogapp:dog_detail', kwargs={'pkr': self.refuge.pk, 'pk': self.pk})
 
 
-class Client(models.Model):
-    name = models.TextField()
-    description = models.TextField(blank=True, null=True)
-    user = models.ForeignKey(User, default=1)
-    password = models.TextField(blank=True, null=True)
-    gender = models.TextField(blank=True, null=True)
-
-    def __unicode__(self):
-        return u"%s" % self.name
-
-
 class Adoption(models.Model):
     name = models.TextField()
     user = models.ForeignKey(Client, null=True, related_name='adoption')
