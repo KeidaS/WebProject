@@ -49,5 +49,5 @@ class Dog(models.Model):
 
 class Adoption(models.Model):
     name = models.TextField()
-    user = models.ForeignKey(Client, null=True, related_name='adoption')
+    user = models.ForeignKey(User, null=True, related_name='adoption')
     dog = models.ForeignKey(Dog, null=True, related_name='adoption')
