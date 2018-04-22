@@ -1,3 +1,11 @@
+**How to run the app (localhost)**
+First of all make sure that you have all the packages of the requeriments.txt file.
+Then check that your python version is python-2.7.14
+
+Finally:
+
+```$ python manage.py runserver```
+
 **How to create an admin user**
 For create an admin user use the next command:
 
