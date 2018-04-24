@@ -1,9 +1,8 @@
 from django.contrib.auth import login, authenticate
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
-from models import Refuge, Dog, Vaccine
+from models import Refuge, Dog
 from forms import RefugeForm, DogForm
 
 from dogapp.forms import SignUpForm

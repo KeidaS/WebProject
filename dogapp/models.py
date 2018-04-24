@@ -1,7 +1,7 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.urls.base import reverse
-
+import json
 
 # Create your models here.
 
@@ -32,9 +32,17 @@ class Vaccine(models.Model):
         return u"%s" % self.name
 
 
+class Race(models.Model):
+    name = models.TextField()
+    description = models.TextField(blank=True, null=True)
+
+    def __unicode__(self):
+        return u"%s" % self.name
+
+
 class Dog(models.Model):
     name = models.TextField()
-    race = models.TextField(blank=True, null=True)
+    race = models.ForeignKey(Race, null=True, related_name='dogs')
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField('Euro amount', max_digits=8, decimal_places=2, blank=True, null=True)
     refuge = models.ForeignKey(Refuge, null=True, related_name='dogs')
