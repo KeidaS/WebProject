@@ -33,6 +33,13 @@ urlpatterns = [
             template_name='dogapp/form.html',
             form_class=RefugeForm),
         name='refuge_edit'),
+    # Delete refuge: ex.: /dogapp/refuge/1/delete
+    url(r'^refuges/(?P<pk>\d+)/delete/$',
+        UpdateView.as_view(
+            model=Refuge,
+            template_name='dogapp/refuge_delete.html',
+            form_class=RefugeForm),
+        name='refuge_delete'),
     # Create a restaurant dish, ex.: /dogapp/refuge/1/dog/create/
     url(r'^refuges/(?P<pk>\d+)/dogs/create/$',
         DogCreate.as_view(),
@@ -51,11 +58,8 @@ urlpatterns = [
             model=Refuge,
             template_name='dogapp/refuge_detail.html'),
         name='refuge_detail'),
-    url(r'^login/$',
-        DetailView.as_view(
-            model=Refuge,
-            template_name='registration/login.html'),
-        name='login'),
+    url(r'^accounts/login/$', core_views.login, name='login'),
+
     url(r'^dogs/(?P<pk>\d+)/adopt$',
         DetailView.as_view(
             model=Dog,

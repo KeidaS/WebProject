@@ -13,15 +13,16 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
 
 
 class RefugeForm(ModelForm):
-	class Meta:
-		model = Refuge
-		exclude = ('user', 'date',)
+    class Meta:
+        model = Refuge
+        exclude = ('user', 'date',)
+
 
 class DogForm(ModelForm):
-	class Meta:
-		model = Dog
-		exclude = ('user', 'refuge',)
+    class Meta:
+        model = Dog
+        exclude = ('user', 'date', 'refuge',)
