@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls.base import reverse
-import json
 
 # Create your models here.
 
@@ -42,11 +41,12 @@ class Race(models.Model):
 
 class Dog(models.Model):
     name = models.TextField()
-    race = models.ForeignKey(Race, null=True, related_name='dogs')
+    race = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField('Euro amount', max_digits=8, decimal_places=2, blank=True, null=True)
     refuge = models.ForeignKey(Refuge, null=True, related_name='dogs')
     vaccine = models.ForeignKey(Vaccine, null=True, related_name='dogs')
+    user = models.ForeignKey(User, default=1)
 
     def __unicode__(self):
         return u"%s" % self.name
