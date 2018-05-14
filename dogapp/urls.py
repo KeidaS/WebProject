@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.views.generic import DetailView, ListView, UpdateView
 from models import Dog, Refuge
 from forms import RefugeForm, DogForm
-from views import RefugeCreate, DogCreate, RefugeDetail
+from views import RefugeCreate, DogCreate, RefugeDetail, RefugeDelete
 from dogapp import views as core_views
 
 urlpatterns = [
@@ -34,18 +34,20 @@ urlpatterns = [
             form_class=RefugeForm),
         name='refuge_edit'),
     # Delete refuge: ex.: /dogapp/refuge/1/delete
+
     url(r'^refuges/(?P<pk>\d+)/delete/$',
-        UpdateView.as_view(
+        RefugeDelete.as_view(
             model=Refuge,
             template_name='dogapp/refuge_delete.html',
-            form_class=RefugeForm),
+            form_class=Refuge),
         name='refuge_delete'),
+
     # Create a restaurant dish, ex.: /dogapp/refuge/1/dog/create/
     url(r'^refuges/(?P<pk>\d+)/dogs/create/$',
         DogCreate.as_view(),
         name='dog_create'),
     # Edit restaurant dish details, ex.: /dogapp/refuge/1/dog/1/edit/
-    url(r'^refuges/(?P<pkr>\\d+)/dogs/(?P<pk>\\d+)/edit/$',
+    url(r'^refuges/(?P<pkr>\d+)/dogs/(?P<pk>\d+)/edit/$',
         UpdateView.as_view(
             model=Dog,
             template_name='dogapp/form.html',

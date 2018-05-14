@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls.base import reverse
 
+
 # Create your models here.
 
 class Refuge(models.Model):
@@ -31,12 +32,14 @@ class Vaccine(models.Model):
         return u"%s" % self.name
 
 
+'''
 class Race(models.Model):
     name = models.TextField()
     description = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
         return u"%s" % self.name
+'''
 
 
 class Dog(models.Model):

@@ -4,7 +4,7 @@
 <h1>
 	{{ dog.name }}
 	{% if user == dog.user %}
-		(<a href="{% url 'dogapp:dog_edit' dog.id %}">edit</a>)
+		(<a href="{% url 'dogapp:dog_edit' dog.refuge.id dog.id %}">edit</a>)
 	{% endif %}
 </h1>
 

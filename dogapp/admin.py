@@ -5,5 +5,5 @@ admin.site.register(models.Dog)
 admin.site.register(models.Vaccine)
 admin.site.register(models.Refuge)
 admin.site.register(models.Adoption)
-admin.site.register(models.Race)
+#admin.site.register(models.Race)
 
