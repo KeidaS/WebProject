@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.views.generic import DetailView, ListView, UpdateView
 from models import Dog, Refuge
 from forms import RefugeForm, DogForm
-from views import RefugeCreate, DogCreate, RefugeDetail, RefugeDelete
+from views import RefugeCreate, DogCreate, RefugeDetail, RefugeDelete, DogDelete
 from dogapp import views as core_views
 
 urlpatterns = [
@@ -53,6 +53,13 @@ urlpatterns = [
             template_name='dogapp/form.html',
             form_class=DogForm),
         name='dog_edit'),
+    url(r'^refuges/(?P<pkr>\d+)/dogs/(?P<pk>\d+)/delete/$',
+        DogDelete.as_view(
+            model=Dog,
+            template_name='dogapp/dog_delete.html',
+            form_class=Dog),
+        name='dog_delete'),
+
     url(r'^signup/$', core_views.signup, name='signup'),
     # Restaurant details, from: /dogapp/1/
     url(r'^refuges/(?P<pk>\d+)/$',

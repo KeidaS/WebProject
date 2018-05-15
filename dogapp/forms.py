@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 
-from models import Dog, Refuge
+from models import Dog, Refuge, Adoption
 
 
 class SignUpForm(UserCreationForm):
@@ -26,3 +26,9 @@ class DogForm(ModelForm):
     class Meta:
         model = Dog
         exclude = ('user', 'date', 'refuge',)
+
+
+class Adoption(ModelForm):
+    class Meta:
+        model = Adoption
+        exclude = ('user', 'date')

@@ -3,8 +3,9 @@
 {% block content %}
 <h1>
 	{{ dog.name }}
-	{% if user == dog.user %}
+	{% if user.is_staff %}
 		(<a href="{% url 'dogapp:dog_edit' dog.refuge.id dog.id %}">edit</a>)
+        (<a href="{% url 'dogapp:dog_delete' dog.refuge.id dog.id %}">delete</a>)
 	{% endif %}
 </h1>
 

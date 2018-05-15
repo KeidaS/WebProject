@@ -3,7 +3,7 @@
 {% block content %}
 <h1>
 	Refuges
-	{% if user %}(<a href="{% url 'dogapp:refuge_create' %}">add</a>){% endif %}
+	{% if user.is_staff %}(<a href="{% url 'dogapp:refuge_create' %}">add</a>){% endif %}
 </h1>
 <ul>
 	{% for refuge in latest_refuge_list %}

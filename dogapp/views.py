@@ -1,5 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic import DeleteView
@@ -62,9 +63,19 @@ class RefugeDelete(DeleteView):
     model = Refuge
     template_name = 'dogapp/refuge_delete.html'
     form_class = RefugeForm
+    success_url = '/dogapp/'
 
     def get_object(self, queryset=None):
         obj = super(RefugeDelete, self).get_object()
-        if not obj.user == self.request.user:
-            raise Http404
+        return obj
+
+
+class DogDelete(DeleteView):
+    model = Dog
+    template_name = 'dogapp/dog_delete.html'
+    form_class = DogForm
+    success_url = '/dogapp/'
+
+    def get_object(self, queryset=None):
+        obj = super(DogDelete, self).get_object()
         return obj
