@@ -78,15 +78,21 @@ class DogDelete(DeleteView):
         obj = super(DogDelete, self).get_object()
         return obj
 
-'''
+
 class AdoptionCreate(CreateView):
     model = Adoption
     template_name = 'dogapp/dog_adopt.html'
     form_class = AdoptionForm
+    success_url = '/dogapp/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        form.instance.refuge = Dog.objects.get(id=self.kwargs['pk'])
+        form.instance.refuge = Refuge.objects.get(id=self.kwargs['pkr'])
         form.instance.dog = Dog.objects.get(id=self.kwargs['pk'])
         return super(AdoptionCreate, self).form_valid(form)
-'''
+
+    def get_context_data(self, **kwargs):
+        context = super(AdoptionCreate, self).get_context_data(**kwargs)
+        context['REFUGE'] = Refuge.objects.get(id=self.kwargs['pkr'])
+        context['DOG'] = Dog.objects.get(id=self.kwargs['pk'])
+        return context

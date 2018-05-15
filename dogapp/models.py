@@ -49,6 +49,7 @@ class Dog(models.Model):
     price = models.DecimalField('Euro amount', max_digits=8, decimal_places=2, blank=True, null=True)
     refuge = models.ForeignKey(Refuge, null=True, related_name='dogs')
     vaccine = models.ForeignKey(Vaccine, null=True, related_name='dogs')
+    adopted = models.BooleanField(default=False)
     user = models.ForeignKey(User, default=1)
 
     def __unicode__(self):
@@ -61,5 +62,8 @@ class Dog(models.Model):
 class Adoption(models.Model):
     name = models.TextField()
     user = models.ForeignKey(User, null=True, related_name='adoption')
-    #refuge = models.ForeignKey(Refuge, null=True, related_name='adoption')
+    refuge = models.ForeignKey(Refuge, null=True, related_name='adoption')
     dog = models.ForeignKey(Dog, null=True, related_name='adoption')
+
+    def __unicode__(self):
+        return u"%s" % self.name

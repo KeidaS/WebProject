@@ -1,15 +1,22 @@
 {% extends "dogapp/base.html" %}
 
 {% block content %}
+
+{% if DOG.adopted == True %}
+This dog has been adopted.
+{% else %}
 <h1>
-	Do you want to adopt {{ dog.name }}?
+	Do you want to adopt {{ DOG.name }} of the refuge {{ REFUGE.name }}?
 </h1>
     <form method="post" action="">
 	    {% csrf_token %}
 	    <table>
 		    {{ form.as_table }}
 	    </table>
-	    <input type="submit" value="Submit"/>
+	    <input type="submit" value="Yes"/>
     </form>
-    (<a href="{% url 'dogapp:refuge_list' %}">NO</a>)
+    (<a href="{% url 'dogapp:refuge_list' %}">No</a>)
+
+{% endif %}
+
 {% endblock %}

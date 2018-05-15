@@ -25,10 +25,10 @@ class RefugeForm(ModelForm):
 class DogForm(ModelForm):
     class Meta:
         model = Dog
-        exclude = ('user', 'date', 'refuge',)
+        exclude = ('user', 'date', 'refuge', 'adopted')
 
 
 class AdoptionForm(ModelForm):
     class Meta:
         model = Adoption
-        exclude = ('user', 'date', 'refuge', 'dog')
+        exclude = ('user', 'date', 'refuge', 'dog', 'name')

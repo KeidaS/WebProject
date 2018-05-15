@@ -1,8 +1,8 @@
 from django.conf.urls import url
 from django.views.generic import DetailView, ListView, UpdateView
-from models import Dog, Refuge
+from models import Dog, Refuge, Adoption
 from forms import RefugeForm, DogForm
-from views import RefugeCreate, DogCreate, RefugeDetail, RefugeDelete, DogDelete
+from views import RefugeCreate, DogCreate, RefugeDetail, RefugeDelete, DogDelete, AdoptionCreate
 from dogapp import views as core_views
 
 urlpatterns = [
@@ -70,8 +70,8 @@ urlpatterns = [
     url(r'^accounts/login/$', core_views.login, name='login'),
 
     url(r'^refuges/(?P<pkr>\d+)/dogs/(?P<pk>\d+)/adopt/$',
-        DetailView.as_view(
-            model=Dog,
+        AdoptionCreate.as_view(
+            model=Adoption,
             template_name='dogapp/dog_adopt.html'),
         name='dog_adopt'),
 ]
