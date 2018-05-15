@@ -18,7 +18,7 @@
 	{{ dog.description }}<br/>
 </p>
     {% if user %}
-		(<a href="{% url 'dogapp:dog_adopt' dog.id %}">adopt</a>)
+		(<a href="{% url 'dogapp:dog_adopt' dog.refuge.id dog.id %}">adopt</a>)
 	{% endif %}
 {% endblock %}
 

@@ -4,6 +4,12 @@
 <h1>
 	Do you want to adopt {{ dog.name }}?
 </h1>
-    (<a href="{% url 'dogapp:refuge_list' %}">YES</a>)
+    <form method="post" action="">
+	    {% csrf_token %}
+	    <table>
+		    {{ form.as_table }}
+	    </table>
+	    <input type="submit" value="Submit"/>
+    </form>
     (<a href="{% url 'dogapp:refuge_list' %}">NO</a>)
 {% endblock %}

@@ -1,12 +1,10 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from django.urls import reverse
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic import DeleteView
-from django.http import Http404
-from models import Refuge, Dog
-from forms import RefugeForm, DogForm
+from models import Refuge, Dog, Adoption
+from forms import RefugeForm, DogForm, AdoptionForm
 
 from dogapp.forms import SignUpForm
 
@@ -79,3 +77,16 @@ class DogDelete(DeleteView):
     def get_object(self, queryset=None):
         obj = super(DogDelete, self).get_object()
         return obj
+
+'''
+class AdoptionCreate(CreateView):
+    model = Adoption
+    template_name = 'dogapp/dog_adopt.html'
+    form_class = AdoptionForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.refuge = Dog.objects.get(id=self.kwargs['pk'])
+        form.instance.dog = Dog.objects.get(id=self.kwargs['pk'])
+        return super(AdoptionCreate, self).form_valid(form)
+'''

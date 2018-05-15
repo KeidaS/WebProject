@@ -28,7 +28,7 @@ class DogForm(ModelForm):
         exclude = ('user', 'date', 'refuge',)
 
 
-class Adoption(ModelForm):
+class AdoptionForm(ModelForm):
     class Meta:
         model = Adoption
-        exclude = ('user', 'date')
+        exclude = ('user', 'date', 'refuge', 'dog')

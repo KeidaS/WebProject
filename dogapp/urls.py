@@ -69,7 +69,7 @@ urlpatterns = [
         name='refuge_detail'),
     url(r'^accounts/login/$', core_views.login, name='login'),
 
-    url(r'^dogs/(?P<pk>\d+)/adopt$',
+    url(r'^refuges/(?P<pkr>\d+)/dogs/(?P<pk>\d+)/adopt/$',
         DetailView.as_view(
             model=Dog,
             template_name='dogapp/dog_adopt.html'),
