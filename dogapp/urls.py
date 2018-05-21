@@ -74,4 +74,5 @@ urlpatterns = [
             model=Adoption,
             template_name='dogapp/dog_adopt.html'),
         name='dog_adopt'),
+
 ]
