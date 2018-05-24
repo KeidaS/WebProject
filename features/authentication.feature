@@ -1,7 +1,7 @@
-Feature: Register Restaurant
-  In order to keep track of the existent refuges
+Feature: Register user
+  In order to login
   As a user
-  I want to register a refuge
+  I want to login
 
   Background: There is a registered user
     Given Exists an user "user" with password "password"

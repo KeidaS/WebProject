@@ -6,17 +6,16 @@ from django.urls.base import reverse
 use_step_matcher("parse")
 
 
-@given('Exists refuge registered by "{user}"')
+@given('Exists refuge registered and a "{username}"')
 def step_impl(context, username):
     from django.contrib.auth.models import User
     user = User.objects.get(username=username)
     from dogapp.models import Refuge
     for row in context.table:
-        refuge = Refuge(user=user)
+        refuge = Refuge()
         for heading in row.headings:
             setattr(refuge, heading, row[heading])
             refuge.save()
-
 
 @when('I register refuge')
 def step_impl(context):
@@ -26,7 +25,7 @@ def step_impl(context):
             form = context.browser.find_by_tag('form').first
             for heading in row.headings:
                 context.browser.fill(heading, row[heading])
-            form.find_by_css('button.btn-success').first.click()
+            form.find_by_value('Submit').first.click()
 
 
 @then('There are {count:n} refuges')
@@ -35,14 +34,14 @@ def step_impl(context, count):
     assert count == Refuge.objects.count()
 
 
-@then('I\'m viewing the details page for refuge by "{username}"')
+@then('I\'m viewing the details page for refuge with "{username}"')
 def step_impl(context, username):
     q_list = [Q((attribute, context.table.rows[0][attribute])) for attribute in context.table.headings]
     from django.contrib.auth.models import User
     q_list.append(Q(('user', User.objects.get(username=username))))
     from dogapp.models import Refuge
-    restaurant = Refuge.objects.filter(reduce(operator.and_, q_list)).get()
-    assert context.browser.url == context.get_url(restaurant)
+    refuge = Refuge.objects.filter(reduce(operator.and_, q_list)).get()
+    assert context.browser.url == context.get_url(refuge)
 
 
 @when('I edit the refuge with name "{name}"')
@@ -55,4 +54,13 @@ def step_impl(context, name):
         form = context.browser.find_by_tag('form').first
         for heading in context.table.headings:
             context.browser.fill(heading, context.table[0][heading])
-        context.browser.find_by_css('button.btn-success').first.click()
+        form.find_by_value('Submit').first.click()
+
+@when('I delete the refuge with name "{name}"')
+def step_impl(context, name):
+    from dogapp.models import Refuge
+    refuge = Refuge.objects.get(name=name)
+    context.browser.visit(context.get_url('dogapp:refuge_delete', refuge.pk))
+    if context.browser.url == context.get_url('dogapp:refuge_delete', refuge.pk):
+        form = context.browser.find_by_tag('form').first
+        form.find_by_value('Confirm').first.click()
