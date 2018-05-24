@@ -6,12 +6,7 @@ Feature: Register Restaurant
   Background: There is a registered user
     Given Exists an user "user" with password "password"
 
-  Scenario: Register just restaurant name
+  Scenario: I don't register a refuge as user
     Given I login as user "user" with password "password"
-    When I register refuge
-      | name        |
-      | Mil Banderes  |
-    Then I'm viewing the details page for restaurant by "admin"
-      | name        |
-      | Mil Banderes  |
-    And There are 1 refuges
+    Then There is no "dogapp:refuge_create" link available
+    And There are 0 refuges

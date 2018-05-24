@@ -19,7 +19,7 @@ def before_all(context):
     django.setup()
     context.test_runner = DiscoverRunner()
     context.test_runner.setup_test_environment()
-    context.browser = Browser('chrome', headless=True)
+    context.browser = Browser('firefox', headless=True)
 
 
 def before_scenario(context, scenario):
