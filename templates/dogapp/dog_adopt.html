@@ -1,5 +1,5 @@
 {% extends "dogapp/base.html" %}
-
+{% block title %} Adopt {{ DOG.name }} - {{ DOG.refuge.name }} - dogapp{% endblock%}
 {% block content %}
 
 {% if DOG.adopted == True %}

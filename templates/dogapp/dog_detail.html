@@ -1,5 +1,5 @@
 {% extends "dogapp/base.html" %}
-
+{% block title %} Dogapp - {{ dog.name }} - {{ dog.refuge.name }}{% endblock%}
 {% block content %}
 <h1>
 	{{ dog.name }}

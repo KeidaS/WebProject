@@ -1,6 +1,22 @@
 {% extends "dogapp/base.html" %}
-
+{% block title %} Dogapp - {{ refuge.name }}{% endblock%}
 {% block content %}
+<span vocab="http://schema.org/" typeof="AnimalShelter">
+<h1>
+<span property="name">{{ refuge.name }}</span>
+<span property="telephone">{{ refuge.telephone }}</span>
+<span rel = "address">
+    <p typeof="PostalAddress">
+        <span property="addressCountry">{{ refuge.country}}</span>
+        <span property="addressRegion">{{ refuge.stateOrProvince}}</span>
+        <span property="addressLocality">{{ refuge.city}}</span>
+        <span property="postalCode">{{ refuge.zipCode}}</span>
+        <span property="streetAddress">{{ refuge.street}}</span>
+</span>
+ {% if user == restaurant.user %}
+(<a href="{% url 'myrestaurants:restaurant_edit' restaurant.id %}">edit</a>)
+ {% endif %}
+</h1>
 <h1>
 	{{ refuge.name }}
 	{% if user.is_staff %}
@@ -25,7 +41,8 @@
 <ul>
 	{% for dog in refuge.dogs.all %}
 		<li><a href="{% url 'dogapp:dog_detail' refuge.id dog.id %}">
-		{{ dog.name }}</a></li>
+            {{ dog.name }}</a>
+        </li>
 	{% empty %}<li>Sorry, no dogs for this refuge yet.</li>
 	{% endfor %}
 </ul>
@@ -33,4 +50,5 @@
 
 {% block footer %}
 Created by {{ refuge.user }}
+</span>
 {% endblock %}
